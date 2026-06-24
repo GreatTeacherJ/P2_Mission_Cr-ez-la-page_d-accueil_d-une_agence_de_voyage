@@ -96,11 +96,12 @@ font-size: 16px;
     grid-template-columns: 1fr 1fr 1fr;/*3 colonne qui se partagent la largeur*/
     grid-template-rows: 1fr 1fr; /* 2 lignes qui se partagent la hauteur */
     flex: 1; /* Prend toute la hauteur restante de hebergements */
-    padding: 10px;
+    padding: 0px;
+    gap: 30px;
 }
 
 .hebergements-cards article {
-    margin: 15px;
+    margin: 0px;
     display: flex;
     flex-direction: column;
 }
@@ -178,7 +179,7 @@ font-size: 16px;
 /***********Activitès**********************/
 .activity{
 margin-top: 33px;
-
+padding: 30px;
 }
 
 .activity-cards{
@@ -186,13 +187,14 @@ margin-top: 33px;
 
 display: flex;
 flex-direction: row;
-justify-content: center;
-
+gap: 30px;
 }
 
 .activity-cards .card{
-margin: 15px;
-width: 25%;
+    
+margin: 0px;
+height: 439px;
+
 }
 
 .activity .card .card-title{
@@ -229,11 +231,15 @@ nav {
     height: 79px;
     padding: 30px;
     box-sizing: border-box;
+    position: relative;
 }
 
 .nav-links {
+    position: absolute;
     display: flex;
     gap: 20px;
+    top: 0px;
+    right: 0px;
 }
 
 nav img{
@@ -252,6 +258,8 @@ border-color: var(--main-color);
     padding: 20px;
 }
 
+
+
 /***********search bar****************/
 
 .search-bar {
@@ -262,16 +270,16 @@ border-color: var(--main-color);
     height: 49px ;
     border-radius: 15px;
     border: 2px solid;
-    border-color: var(--filter-bg-color);
+    border-color: var(--main-bg-color);
     overflow: hidden;
     margin: 35px 0px;
     
 }
 
 .search-bar input {
-    flex: 1; /* prend tout l'espace disponible */
-    
-    border: none;        
+    flex: 1; /* prend tout l'espace disponible */    
+    border: none;    
+    text-align: center;    
 }
 
 
@@ -285,21 +293,27 @@ border-color: var(--main-color);
    
 }
 
+/*****Modification des icons https://fontawesome.com*****/
 
 .fa-location-dot {
     color: black ;
     margin: 10px;
-    
-    
 }
-.icon-wrapper {
-    
-    display: flex;
-    align-items: center;
-    padding-left: 10px;
-    background-color: var(--main-bg-color);
-    
+
+.fa-circle-info {
+    color: var(--main-color); /* ton bleu */
+    background-color: white;
 }
+
+.fa-solid.fa-circle-info{
+color: white;
+background-color: #0065FC;
+border-radius: 50%;
+border: 2px solid var(--main-bg-color);
+margin: 1.5px;
+}
+
+
 
 /*********Filter***********/
 .filters {
@@ -325,6 +339,11 @@ border-color: var(--main-color);
     
 }
 
+.filters-span{
+display: flex;
+flex-direction: row;
+
+}
 
 /* Le code ci-dessous correspond à la version responsive uniquement */
 
