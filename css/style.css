@@ -72,7 +72,7 @@ font-size: 16px;
 /****** Hebergements And Populaires ***********/
 .hebergements-and-populaires {
     display: flex;
-    justify-content: space-between;
+    align-items: stretch; /* Les deux sections = même hauteur */
 }
 
 .hebergements-and-populaires section {
@@ -80,37 +80,45 @@ font-size: 16px;
     border-radius: 20px;
     padding: 30px;
     box-sizing: border-box;
+    
 }
 
 /****** Hebergements ***********/
 .hebergements {
-    width: 65%;
-    
+    flex: 1;
+    margin-right: 40px;
+    display: flex;
+    flex-direction: column; /* Pour que hebergements-cards puisse s'étirer */
 }
 
-.hebergements-cards{
-    
-display: grid;
-    grid-template-columns: auto auto auto;
-
-padding: 10px;;
+.hebergements-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;/*3 colonne qui se partagent la largeur*/
+    grid-template-rows: 1fr 1fr; /* 2 lignes qui se partagent la hauteur */
+    flex: 1; /* Prend toute la hauteur restante de hebergements */
+    padding: 10px;
 }
 
-.hebergements-cards article{
+.hebergements-cards article {
     margin: 15px;
+    display: flex;
+    flex-direction: column;
 }
 
-.hebergements-cards article img{
-width: 100%;
-
+.hebergements-cards article img {
+    width: 100%;
+    flex: 1; /* L'image remplit l'espace disponible */
+    object-fit: cover;
 }
-
 /****** Populaires ***********/
 .populaires {
-    width: 32%;
-    margin-left: 40px;
+    width: 419px;
+    flex-shrink: 0;/*Evite de retrecire l'élément en cas de responsive*/
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    box-sizing: border-box;
 }
-
 .populaires-title {
     display: flex;
     justify-content: space-between;
@@ -119,17 +127,23 @@ width: 100%;
 
 .populaires-cards .card {
     display: flex;
-    margin-top: 33px;
-    height: 33%;
+    width: 100%;
+    flex: 1;
+}
+
+
+.populaires-cards a {
+    flex: 1; /* Chaque lien prend 1/3 de la hauteur */
+    display: flex;
+    margin-top: 15px;
 }
 
 .populaires-cards img {
     width: 33%;
-    height: 136px;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
+    object-fit: cover;
 }
-
 .populaires-cards .card-content {
     width: 67%;
     padding-left: 15px;
@@ -152,9 +166,16 @@ width: 100%;
     margin-bottom: 5px;
 }
 
+.populaires-cards {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Remplit toute la hauteur de populaires */
+    justify-content: space-between; /* Les cards se répartissent la hauteur */
+}
+
 /******CSS rajouter**********/
 
-
+/***********Activitès**********************/
 .activity{
 margin-top: 33px;
 
@@ -179,6 +200,7 @@ padding-left: 33px;
 
 }
 
+/******Footer*********/
 footer {
 display: flex;
 flex-direction: row;
@@ -197,6 +219,8 @@ footer section a{
     display: block;/*Permet de positionner les balise <a> en colonne*/
     padding: 5px;
 }
+
+/***********Navigation**********/
 
 nav {
     display: flex;
@@ -228,6 +252,8 @@ border-color: var(--main-color);
     padding: 20px;
 }
 
+/***********search bar****************/
+
 .search-bar {
     display: flex;
     align-items: stretch;/*Les enfant prenne toutes la hauteur*/
@@ -245,9 +271,7 @@ border-color: var(--main-color);
 .search-bar input {
     flex: 1; /* prend tout l'espace disponible */
     
-    border: none;
-    
-    
+    border: none;        
 }
 
 
@@ -277,7 +301,7 @@ border-color: var(--main-color);
     
 }
 
-
+/*********Filter***********/
 .filters {
     display: flex;
     gap: 10px;
