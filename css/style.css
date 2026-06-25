@@ -55,6 +55,8 @@ font-size: 16px;
 
 .card img {
     object-fit: cover;
+    border-radius: 20px 20px 0 0 ;
+    
 }
 
 .card-title {
@@ -72,7 +74,7 @@ font-size: 16px;
 /****** Hebergements And Populaires ***********/
 .hebergements-and-populaires {
     display: flex;
-    justify-content: space-between;
+    align-items: stretch; /* Les deux sections = même hauteur */
 }
 
 .hebergements-and-populaires section {
@@ -80,37 +82,49 @@ font-size: 16px;
     border-radius: 20px;
     padding: 30px;
     box-sizing: border-box;
+    
 }
 
 /****** Hebergements ***********/
 .hebergements {
-    width: 65%;
+    flex: 1;
+    margin-right: 40px;
+    display: flex;
+    flex-direction: column; /* Pour que hebergements-cards puisse s'étirer */
+    gap: 30px;
+}
+
+.hebergements-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;/*3 colonne qui se partagent la largeur*/
+    grid-template-rows: 1fr 1fr; /* 2 lignes qui se partagent la hauteur */
+    flex: 1; /* Prend toute la hauteur restante de hebergements */
+    padding: 0px;
+    gap: 30px;
+}
+
+.hebergements-cards a {
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+.hebergements-cards article img {
+    width: 100%;
+    height: 124px;
     
+    object-fit: cover;
 }
-
-.hebergements-cards{
-    
-display: grid;
-    grid-template-columns: auto auto auto;
-
-padding: 10px;;
-}
-
-.hebergements-cards article{
-    margin: 15px;
-}
-
-.hebergements-cards article img{
-width: 100%;
-
-}
-
 /****** Populaires ***********/
 .populaires {
-    width: 32%;
-    margin-left: 40px;
+    width: 429px;
+    flex-shrink: 0;/*Evite de retrecire l'élément en cas de responsive*/
+    display: flex;
+    flex-direction: column;
+    
+    box-sizing: border-box;
+    gap: 30px;
 }
-
 .populaires-title {
     display: flex;
     justify-content: space-between;
@@ -119,17 +133,24 @@ width: 100%;
 
 .populaires-cards .card {
     display: flex;
-    margin-top: 33px;
-    height: 33%;
+    width: 100%;
+    
+}
+
+
+.populaires-cards a {
+    flex: 1; /* Chaque lien prend 1/3 de la hauteur */
+    display: flex;
+    
 }
 
 .populaires-cards img {
     width: 33%;
-    height: 136px;
+    height: 146px;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
+    object-fit: cover;
 }
-
 .populaires-cards .card-content {
     width: 67%;
     padding-left: 15px;
@@ -152,11 +173,20 @@ width: 100%;
     margin-bottom: 5px;
 }
 
+.populaires-cards {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Remplit toute la hauteur de populaires */
+    justify-content: space-between; /* Les cards se répartissent la hauteur */
+    gap: 30px;
+}
+
 /******CSS rajouter**********/
 
-
+/***********Activitès**********************/
 .activity{
 margin-top: 33px;
+padding: 30px;
 
 }
 
@@ -165,13 +195,20 @@ margin-top: 33px;
 
 display: flex;
 flex-direction: row;
-justify-content: center;
+gap: 30px;
+}
+.activity-cards a{
 
+    display: flex;
+    flex: 1;
 }
 
 .activity-cards .card{
-margin: 15px;
-width: 25%;
+    
+margin-top: 30px;
+height: 439px;
+display: flex;
+    flex-direction: column;
 }
 
 .activity .card .card-title{
@@ -179,6 +216,15 @@ padding-left: 33px;
 
 }
 
+.activity-cards .card img{
+width: 100%;
+object-fit: cover;
+flex: 1;
+overflow: hidden; /*l'image paul-hermann est vertivale donc dépasse, hidden masque ce qui dépasse*/
+
+}
+
+/******Footer*********/
 footer {
 display: flex;
 flex-direction: row;
@@ -198,6 +244,8 @@ footer section a{
     padding: 5px;
 }
 
+/***********Navigation**********/
+
 nav {
     display: flex;
     justify-content: space-between;
@@ -205,11 +253,15 @@ nav {
     height: 79px;
     padding: 30px;
     box-sizing: border-box;
+    position: relative;
 }
 
 .nav-links {
+    position: absolute;
     display: flex;
-    gap: 20px;
+    gap: 68px;
+    top: 0px;
+    right: 0px;
 }
 
 nav img{
@@ -228,6 +280,15 @@ border-color: var(--main-color);
     padding: 20px;
 }
 
+.nav-links a{
+padding-top: 19px;
+
+}
+
+
+
+/***********search bar****************/
+
 .search-bar {
     display: flex;
     align-items: stretch;/*Les enfant prenne toutes la hauteur*/
@@ -236,18 +297,16 @@ border-color: var(--main-color);
     height: 49px ;
     border-radius: 15px;
     border: 2px solid;
-    border-color: var(--filter-bg-color);
+    border-color: var(--main-bg-color);
     overflow: hidden;
     margin: 35px 0px;
     
 }
 
 .search-bar input {
-    flex: 1; /* prend tout l'espace disponible */
-    
-    border: none;
-    
-    
+    flex: 1; /* prend tout l'espace disponible */    
+    border: none;    
+    text-align: center;    
 }
 
 
@@ -261,23 +320,37 @@ border-color: var(--main-color);
    
 }
 
+.search-bar-icon{
+display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px; /* largeur de l'icône */
+    background-color: var(--main-bg-color);
+
+}
+
+/*****Modification des icons https://fontawesome.com*****/
 
 .fa-location-dot {
     color: black ;
-    margin: 10px;
-    
-    
 }
-.icon-wrapper {
-    
-    display: flex;
-    align-items: center;
-    padding-left: 10px;
-    background-color: var(--main-bg-color);
-    
+
+.fa-circle-info {
+    color: var(--main-color); /* ton bleu */
+    background-color: white;
+}
+
+.fa-solid.fa-circle-info{
+color: white;
+background-color: #0065FC;
+border-radius: 50%;
+border: 2px solid var(--main-bg-color);
+margin: 1.5px;
 }
 
 
+
+/*********Filter***********/
 .filters {
     display: flex;
     gap: 10px;
@@ -299,6 +372,12 @@ border-color: var(--main-color);
     background-color: var(--filter-bg-color);
     
     
+}
+
+.filters-span{
+display: flex;
+flex-direction: row;
+
 }
 
 
